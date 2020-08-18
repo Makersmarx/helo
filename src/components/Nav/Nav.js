@@ -28,8 +28,6 @@ class Nav extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => state;
-
 function mapStateToProps(reduxState) {
   const { username, profile_pic } = reduxState;
   return {
