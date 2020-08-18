@@ -1,0 +1,19 @@
+.auth-container {
+  margin-left: 35%;
+  /* change to trasparent once everything is lined up */
+  background-color: pink;
+  height: 50vh;
+  width: 30vw;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+}
+
+.auth-buttons button {
+  background-color: #403d39;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+}

@@ -9,6 +9,17 @@ const express = require('express');
 
 const app = express();
 
+const session = require('express-session');
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAg: 1000 * 60 * 60 * 48 },
+    secret: SESSION_SECRET,
+  })
+);
+
 app.use(express.json);
 
 // massive
@@ -34,5 +45,9 @@ massive({
   .catch((err) => console.log(err));
 
 // endpoints
+app.post('/auth/login', ctrl.login);
+app.post('/auth/register', ctrl.register);
+app.get('/auth/user', ctrl.getUser);
+app.post('/auth/logout', ctrl.logout);
 
 app.listen(port, () => console.log(`Loud and Proud on Port: ${port}`));
