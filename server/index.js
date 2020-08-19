@@ -11,6 +11,11 @@ const app = express();
 
 const session = require('express-session');
 
+app.use(express.json);
+
+// destructure vars from .env to use in index.js
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+
 app.use(
   session({
     resave: false,
@@ -20,16 +25,11 @@ app.use(
   })
 );
 
-app.use(express.json);
-
 // massive
 const massive = require('massive');
 
 // controller
-// const controller = require('./controller')
-
-// destructure vars from .env to use in index.js
-const { SERVER_PORT, CONNECTION_STRING } = process.env;
+const controller = require('./controller');
 
 // massive connecting to db
 massive({
@@ -45,9 +45,9 @@ massive({
   .catch((err) => console.log(err));
 
 // endpoints
-app.post('/auth/login', ctrl.login);
-app.post('/auth/register', ctrl.register);
-app.get('/auth/user', ctrl.getUser);
-app.post('/auth/logout', ctrl.logout);
+app.post('/auth/login', controller.login);
+app.post('/auth/register', controller.register);
+app.get('/auth/user', controller.getUser);
+app.post('/auth/logout', controller.logout);
 
 app.listen(port, () => console.log(`Loud and Proud on Port: ${port}`));
