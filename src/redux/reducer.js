@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 const initialState = {
   username: '',
@@ -13,6 +13,13 @@ export function loginUser(username, profilePic) {
   return {
     type: LOGIN_USER,
     payload: username,
+  };
+}
+
+export function logoutUser() {
+  return {
+    type: LOGOUT_USER,
+    payload: initialState,
   };
 }
 
